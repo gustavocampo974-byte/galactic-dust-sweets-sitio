@@ -7,7 +7,7 @@
    El verde #25D366 se reserva SOLO para pedir por WhatsApp.
    ========================================================= */
 :root{
-  --space:#07070A;--deep:#0E0B06;--violet:#D4A537;--violet-l:#F2CF6B;--silver:#E9D9A6;--ink:#FFF8E7;--wa:#D4A537;--wa-edge:#8a6a14;
+  --space:#07070A;--deep:#0E0B06;--violet:#D4A537;--violet-l:#F2CF6B;--silver:#E9D9A6;--ink:#FFF8E7;--wa:#0B0906;--wa-edge:#D4A537;--wa-ink:#F2CF6B;
   --muted:#CDBF9C;--soft:#EADFC2;--line:rgba(212,165,55,.18);--line-2:rgba(212,165,55,.34);
   --chrome:linear-gradient(135deg,#fff3c4 0%,#f2cf6b 26%,#a8761f 52%,#ffe7a1 70%,#b8862a 100%);
   --chrome-soft:linear-gradient(135deg,#fffaf0 0%,#f3e4bd 30%,#d6b46a 55%,#fbf1d8 75%,#e2c98d 100%);
@@ -46,7 +46,7 @@ main{counter-reset:sec}
 .secn::after{content:"N.º " counter(sec,decimal-leading-zero)}
 
 /* ---------- botones ---------- */
-.wa,.btn[href*="wa.me"]{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;background:var(--wa);color:#1a1204;font-weight:800;border-radius:16px;padding:1rem 1.5rem;font-size:1rem;line-height:1.2;border:0;cursor:pointer;box-shadow:0 6px 0 var(--wa-edge);transition:transform .16s var(--ease),box-shadow .16s var(--ease);text-align:center}
+.wa,.btn[href*="wa.me"]{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;background:var(--wa);color:var(--wa-ink);font-weight:800;border-radius:16px;padding:1rem 1.5rem;font-size:1rem;line-height:1.2;border:1px solid rgba(242,207,107,.6);cursor:pointer;box-shadow:0 6px 0 var(--wa-edge);transition:transform .16s var(--ease),box-shadow .16s var(--ease);text-align:center}
 .wa:hover,.btn[href*="wa.me"]:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--wa-edge)}
 .wa:active,.btn[href*="wa.me"]:active{transform:translateY(4px);box-shadow:0 2px 0 var(--wa-edge)}
 .wa:not(.sm)::before,.btn[href*="wa.me"]::before{content:"";width:20px;height:20px;flex:none;background:currentColor;
@@ -592,3 +592,7 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
 .shot i,.p .img::before{z-index:2}
 .p .img::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(10,8,4,0) 45%,rgba(10,8,4,.55));z-index:1;pointer-events:none}
 .p .img{position:relative;overflow:hidden}
+
+/* botones de pedido negros con texto dorado (contraste sobre fondos oscuros y dorados) */
+.wa svg,.btn[href*="wa.me"] svg{color:var(--wa-ink);fill:currentColor}
+.wa:hover,.btn[href*="wa.me"]:hover{background:#17120a}
