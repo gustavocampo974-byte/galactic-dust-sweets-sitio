@@ -263,7 +263,7 @@ h1,h2,h3{overflow-wrap:break-word;-webkit-hyphens:manual;hyphens:manual}
 .cal-grid button{aspect-ratio:1;min-height:38px;border-radius:9px;border:0;font-weight:700;font-size:.88rem;background:#25252e;color:var(--ink);cursor:pointer;transition:background .15s,transform .15s;position:relative}
 .cal-grid button:hover:not(:disabled){background:var(--violet)}
 .cal-grid button:active:not(:disabled){transform:scale(.94)}
-.cal-grid button:disabled{background:transparent;color:#7d6c44;font-weight:500;cursor:not-allowed}
+.cal-grid button:disabled{background:transparent;color:#a3936b;font-weight:500;cursor:not-allowed}
 .cal-grid button.today::after{content:"";position:absolute;left:50%;bottom:5px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:currentColor}
 .cal-grid button.on{background:var(--ink);color:var(--space)}
 .rule{margin-top:1rem;font-size:.82rem;color:var(--muted);line-height:1.5;display:flex;gap:.55rem}
@@ -373,8 +373,8 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
 /* ---------- cierre violeta ---------- */
 .close{padding:clamp(2.5rem,7vw,6rem) clamp(1.6rem,5vw,4.5rem);background:radial-gradient(60% 80% at 100% 100%,rgba(10,8,4,.55),transparent 70%),radial-gradient(70% 70% at 0% 0%,rgba(244,241,255,.25),transparent 60%),var(--violet);display:grid;grid-template-columns:1.3fr .7fr;gap:2rem;align-items:end}
 .close .sec-h2{font-size:clamp(2.2rem,5.4vw,4.6rem);max-width:13ch}
-.close .eyebrow{color:#fff}
-.close p,.close-b{color:#fff;line-height:1.65;max-width:46ch;margin:1.4rem 0 2rem;font-size:1.02rem}
+.close .eyebrow{color:#1a1204}
+.close p,.close-b{color:#1a1204;line-height:1.65;max-width:46ch;margin:1.4rem 0 2rem;font-size:1.02rem}
 .close-b p{margin:0}
 .close-b p+p{margin-top:.6rem}
 .close-i{color:#fff;margin:-1rem 0 1.4rem}
@@ -382,8 +382,8 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
 .close .orb i{position:absolute;border-radius:50%;background:var(--sphere);box-shadow:0 30px 60px -20px rgba(10,8,4,.6)}
 .close .orb i:nth-child(1){inset:0}
 .close .orb i:nth-child(2){width:28%;height:28%;left:-18%;bottom:-6%}
-.close .btn:not([href*="wa.me"]){border-color:rgba(255,255,255,.6);color:#fff}
-.close .btn:not([href*="wa.me"]):hover{background:rgba(255,255,255,.12);border-color:#fff}
+.close .btn:not([href*="wa.me"]){background:#0B0906;border-color:rgba(242,207,107,.6);color:var(--wa-ink)}
+.close .btn:not([href*="wa.me"]):hover{background:#17120a;border-color:var(--wa-ink)}
 .close-s .sec-h2{font-size:clamp(2rem,4.6vw,4rem)}
 
 /* ---------- portada de páginas internas ---------- */
@@ -475,10 +475,10 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
 .social svg{width:18px;height:18px;fill:none;stroke:var(--silver);stroke-width:1.6}
 .legal{grid-column:1/-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.6rem;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .legal .mono{font-size:.64rem}
-.fab{position:fixed;right:1rem;bottom:1rem;z-index:50;width:60px;height:60px;border-radius:20px;background:var(--wa);display:grid;place-items:center;box-shadow:0 6px 0 var(--wa-edge),0 14px 30px -8px rgba(0,0,0,.6);transition:transform .16s var(--ease),box-shadow .16s var(--ease)}
+.fab{position:fixed;right:1rem;bottom:1rem;z-index:50;width:60px;height:60px;border-radius:20px;background:var(--wa);border:1px solid rgba(242,207,107,.6);display:grid;place-items:center;box-shadow:0 6px 0 var(--wa-edge),0 14px 30px -8px rgba(0,0,0,.6);transition:transform .16s var(--ease),box-shadow .16s var(--ease)}
 .fab:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--wa-edge),0 18px 34px -8px rgba(0,0,0,.6)}
 .fab:active{transform:translateY(4px);box-shadow:0 2px 0 var(--wa-edge)}
-.fab svg{width:30px;height:30px;fill:#1a1204}
+.fab svg{width:30px;height:30px;fill:var(--wa-ink)}
 
 /* ---------- responsive ---------- */
 @media (min-width:560px){.hdr-cta{display:inline-flex}}
@@ -596,3 +596,6 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
 /* botones de pedido negros con texto dorado (contraste sobre fondos oscuros y dorados) */
 .wa svg,.btn[href*="wa.me"] svg{color:var(--wa-ink);fill:currentColor}
 .wa:hover,.btn[href*="wa.me"]:hover{background:#17120a}
+
+/* bloque de cierre dorado: textos en negro (contraste) */
+.close .sec-h2,.close .sec-h2 *{color:#0B0906;-webkit-text-fill-color:#0B0906;background:none}
