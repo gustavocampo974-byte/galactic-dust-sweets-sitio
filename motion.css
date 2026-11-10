@@ -1,0 +1,74 @@
+/* Play Motion: biblioteca de movimiento de Play Marketing para los sitios generados.
+   Se activa con atributos (data-reveal, data-stagger, data-parallax, .pm-marquee…) y con el nivel en <html data-motion>.
+   Mejora progresiva: sin JS (o sin la clase .pm-js) todo es visible. Solo anima transform y opacity (no mueve el diseño). */
+:root{--pm-ease:cubic-bezier(.22,.61,.36,1);--pm-ease-out:cubic-bezier(.16,1,.3,1);--pm-dur:.8s;--pm-dist:28px}
+html[data-motion="expresiva"]{--pm-dur:1.05s;--pm-dist:48px}
+html[data-motion="sutil"]{--pm-dur:.75s;--pm-dist:22px}
+
+/* accesibilidad base que el panel agrega a todas las páginas */
+.skip-link{position:absolute;left:12px;top:-60px;z-index:1000;padding:10px 16px;background:#111;color:#fff;border-radius:6px;text-decoration:none;font:600 14px/1.2 system-ui,sans-serif}
+.skip-link:focus{top:12px}
+main:focus{outline:none}
+/* selector de idioma (sitios bilingües); el diseño puede darle su propio estilo */
+.pm-lang{display:inline-flex;gap:.5rem;align-items:center;font-size:.8125rem;letter-spacing:.04em}
+.pm-lang a{color:inherit;text-decoration:none;opacity:.8;padding:.25rem .5rem;border:1px solid currentColor;border-radius:999px}
+.pm-lang a:hover,.pm-lang a:focus-visible{opacity:1}
+
+/* aparición al hacer scroll */
+.pm-js [data-reveal]{opacity:0;transition:opacity var(--pm-dur) var(--pm-ease),transform var(--pm-dur) var(--pm-ease-out);transition-delay:var(--pm-delay,0s);will-change:opacity,transform}
+.pm-js [data-reveal="up"]{transform:translate3d(0,var(--pm-dist),0)}
+.pm-js [data-reveal="down"]{transform:translate3d(0,calc(var(--pm-dist) * -1),0)}
+.pm-js [data-reveal="left"]{transform:translate3d(calc(var(--pm-dist) * -1),0,0)}
+.pm-js [data-reveal="right"]{transform:translate3d(var(--pm-dist),0,0)}
+.pm-js [data-reveal="scale"]{transform:scale(.94)}
+.pm-js [data-reveal="fade"]{transform:none}
+.pm-js [data-reveal].pm-in{opacity:1;transform:none}
+
+/* revelado de imagen con máscara */
+.pm-js [data-reveal="mask"]{opacity:1;clip-path:inset(0 0 100% 0);transition:clip-path calc(var(--pm-dur) * 1.3) var(--pm-ease-out)}
+.pm-js [data-reveal="mask"].pm-in{clip-path:inset(0 0 0 0)}
+
+/* titular palabra por palabra (el JS envuelve cada palabra) */
+.pm-js [data-split] .pm-w{display:inline-block;opacity:0;transform:translate3d(0,.6em,0);transition:opacity .7s var(--pm-ease),transform .9s var(--pm-ease-out);transition-delay:calc(var(--pm-i) * 60ms)}
+.pm-js [data-split].pm-in .pm-w{opacity:1;transform:none}
+
+/* zoom lento de fondo (Ken Burns) */
+[data-kenburns]{overflow:hidden}
+[data-kenburns] img{animation:pm-kb 18s var(--pm-ease) both alternate infinite}
+@keyframes pm-kb{from{transform:scale(1)}to{transform:scale(1.08)}}
+
+/* cinta continua (logos, sellos, frases) */
+.pm-marquee{overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.pm-marquee>.pm-track{display:inline-flex;gap:3rem;animation:pm-mq var(--pm-mq,32s) linear infinite}
+.pm-marquee:hover>.pm-track{animation-play-state:paused}
+@keyframes pm-mq{to{transform:translate3d(-50%,0,0)}}
+
+/* microinteracciones */
+.pm-lift{transition:transform .35s var(--pm-ease-out),box-shadow .35s var(--pm-ease)}
+.pm-lift:hover{transform:translate3d(0,-4px,0);box-shadow:0 14px 34px -14px rgba(0,0,0,.28)}
+.pm-zoom{overflow:hidden}.pm-zoom img{transition:transform .9s var(--pm-ease-out)}.pm-zoom:hover img{transform:scale(1.05)}
+.pm-underline{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .4s var(--pm-ease)}
+.pm-underline:hover{background-size:100% 1px}
+.pm-btn{position:relative;overflow:hidden;transition:transform .25s var(--pm-ease),box-shadow .25s var(--pm-ease)}
+.pm-btn:hover{transform:translate3d(0,-2px,0)}
+.pm-btn:active{transform:translate3d(0,0,0) scale(.98)}
+
+/* barra de progreso de lectura */
+.pm-progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(var(--pm-p,0));background:var(--pm-accent,currentColor);z-index:999;pointer-events:none}
+
+/* cabecera que se compacta al hacer scroll (el JS pone .pm-scrolled en <html>) */
+[data-shrink]{transition:padding .35s var(--pm-ease),background-color .35s var(--pm-ease),box-shadow .35s var(--pm-ease)}
+
+/* transición entre páginas (navegadores compatibles) */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.35s}
+
+html[data-motion="ninguna"] [data-reveal],html[data-motion="ninguna"] [data-split] .pm-w{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
+html[data-motion="ninguna"] [data-kenburns] img,html[data-motion="ninguna"] .pm-marquee>.pm-track{animation:none}
+
+@media (prefers-reduced-motion:reduce){
+  .pm-js [data-reveal],.pm-js [data-split] .pm-w{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
+  [data-kenburns] img,.pm-marquee>.pm-track{animation:none}
+  .pm-lift,.pm-zoom img,.pm-btn{transition:none}
+  @view-transition{navigation:none}
+}
