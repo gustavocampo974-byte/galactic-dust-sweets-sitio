@@ -184,7 +184,7 @@ main{counter-reset:sec}
 .card h3{font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,1.9vw,1.7rem);letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
 .card p,.svc-t{font-size:.96rem;line-height:1.6;max-width:42ch}
 .card .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:.6rem}
-.c-star,.svc-grid .svc:nth-child(4n+1){background:radial-gradient(80% 60% at 85% 10%,rgba(244,241,255,.3),transparent 60%),radial-gradient(60% 50% at 0% 100%,rgba(58,42,12,.55),transparent 70%),var(--violet);color:var(--ink)}
+.c-star,.svc-grid .svc:nth-child(4n+1){background:radial-gradient(80% 60% at 85% 10%,rgba(244,241,255,.3),transparent 60%),radial-gradient(60% 50% at 0% 100%,rgba(58,42,12,.28),transparent 70%),var(--violet);color:#0B0906}
 .c-star{grid-column:span 6;grid-row:span 2}
 .c-star .num{color:var(--ink)}
 .c-star h3{font-size:clamp(2rem,3.6vw,3.2rem)}
@@ -223,7 +223,7 @@ h1,h2,h3{overflow-wrap:break-word;-webkit-hyphens:manual;hyphens:manual}
 .svc .svc-t a{position:relative;z-index:3}
 .svc-t p+p{margin-top:.6rem}
 .svc-go::before{content:"Ver página →";font-weight:700;font-size:.88rem;border-bottom:1px solid currentColor;padding-bottom:1px}
-.svc:has(.svc-a[href*="wa.me"]) .svc-go{display:inline-flex;background:var(--wa);color:#1a1204;border-radius:13px;padding:.75rem 1.1rem;box-shadow:0 4px 0 var(--wa-edge);transition:transform .16s var(--ease),box-shadow .16s var(--ease)}
+.svc:has(.svc-a[href*="wa.me"]) .svc-go{display:inline-flex;background:var(--wa);color:var(--wa-ink);border:1px solid rgba(242,207,107,.6);border-radius:13px;padding:.75rem 1.1rem;box-shadow:0 4px 0 var(--wa-edge);transition:transform .16s var(--ease),box-shadow .16s var(--ease)}
 .svc:has(.svc-a[href*="wa.me"]) .svc-go::before{content:"Pedir por WhatsApp";border:0;padding:0;font-weight:800}
 .svc:has(.svc-a[href*="wa.me"]):hover .svc-go{transform:translateY(-2px);box-shadow:0 6px 0 var(--wa-edge)}
 .svc:hover .svc-go::before{border-bottom-color:transparent}
@@ -306,8 +306,8 @@ h1,h2,h3{overflow-wrap:break-word;-webkit-hyphens:manual;hyphens:manual}
 .p.off{margin-top:4rem}
 .cap{display:grid;grid-template-columns:1fr auto;gap:.3rem 1rem;font-size:.85rem;padding:0 .2rem}
 .cap b{font-weight:700}.cap em{font-style:normal;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--silver)}
-.ask{grid-column:1/-1;justify-self:start;color:var(--wa);font-weight:700;font-size:.84rem;border-bottom:1px solid rgba(37,211,102,.45);padding-bottom:1px}
-.ask:hover{border-color:var(--wa)}
+.ask{grid-column:1/-1;justify-self:start;color:var(--wa-ink);font-weight:700;font-size:.84rem;border-bottom:1px solid rgba(37,211,102,.45);padding-bottom:1px}
+.ask:hover{border-color:var(--wa-ink)}
 .events-idx{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(3rem,6vw,4.5rem);border-top:1px solid var(--line)}
 .events-idx li+li{border-left:1px solid var(--line)}
 .events-idx a{display:flex;flex-direction:column;gap:.5rem;padding:1.4rem 1.4rem 1.4rem 0;height:100%}
@@ -371,7 +371,7 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
 .ans p+p{margin-top:.7rem}
 
 /* ---------- cierre violeta ---------- */
-.close{padding:clamp(2.5rem,7vw,6rem) clamp(1.6rem,5vw,4.5rem);background:radial-gradient(60% 80% at 100% 100%,rgba(10,8,4,.55),transparent 70%),radial-gradient(70% 70% at 0% 0%,rgba(244,241,255,.25),transparent 60%),var(--violet);display:grid;grid-template-columns:1.3fr .7fr;gap:2rem;align-items:end}
+.close{padding:clamp(2.5rem,7vw,6rem) clamp(1.6rem,5vw,4.5rem);background:radial-gradient(60% 80% at 100% 100%,rgba(10,8,4,.3),transparent 70%),radial-gradient(70% 70% at 0% 0%,rgba(244,241,255,.25),transparent 60%),var(--violet);display:grid;grid-template-columns:1.3fr .7fr;gap:2rem;align-items:end}
 .close .sec-h2{font-size:clamp(2.2rem,5.4vw,4.6rem);max-width:13ch}
 .close .eyebrow{color:#1a1204}
 .close p,.close-b{color:#1a1204;line-height:1.65;max-width:46ch;margin:1.4rem 0 2rem;font-size:1.02rem}
@@ -599,3 +599,14 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
 
 /* bloque de cierre dorado: textos en negro (contraste) */
 .close .sec-h2,.close .sec-h2 *{color:#0B0906;-webkit-text-fill-color:#0B0906;background:none}
+
+/* logo real del cliente (emblema circular) */
+.logo-mark{width:52px;height:52px;flex:none;border-radius:50%;filter:drop-shadow(0 0 10px rgba(212,165,55,.25))}
+.ftr .logo-mark{width:84px;height:84px}
+@media (max-width:640px){.logo-mark{width:44px;height:44px}}
+
+/* tarjetas doradas: texto negro (antes eran moradas con texto blanco) */
+.c-star .num,.c-star h3,.c-star p,.c-star a:not(.wa):not(.btn),
+.svc-grid .svc:nth-child(4n+1) .svc-a,.svc-grid .svc:nth-child(4n+1) .svc-t,.svc-grid .svc:nth-child(4n+1) h3,.svc-grid .svc:nth-child(4n+1) .num{color:#0B0906}
+.c-star .tbd,.svc-grid .svc:nth-child(4n+1) .tbd{color:#3a2c12;background:rgba(255,255,255,.5);border-color:rgba(11,9,6,.35)}
+.close a:not(.wa):not(.btn){color:#0B0906}
