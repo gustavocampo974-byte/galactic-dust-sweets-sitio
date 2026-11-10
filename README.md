@@ -1,3 +1,3 @@
-# Galactic Dust Sweets — vista previa del sitio
+# Galactic Dust Sweets
 
-Borrador generado con Play Panel (Play Marketing). Marcado noindex: no es el sitio definitivo.
+Sitio generado con Play Panel (Play Marketing). Vista previa: marcada noindex, no es el sitio definitivo.
