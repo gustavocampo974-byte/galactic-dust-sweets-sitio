@@ -137,7 +137,7 @@ main{counter-reset:sec}
 .lede{margin-top:1.6rem;max-width:46ch;font-size:clamp(1rem,1.15vw,1.08rem);line-height:1.65;color:#efe3c2}
 .ctas{display:flex;flex-wrap:wrap;gap:.9rem 1rem;margin-top:2rem;align-items:center}
 .port{position:relative;justify-self:center;width:min(36vw,520px);aspect-ratio:1;margin:3rem var(--inner) 2rem 0}
-.ring{position:absolute;inset:0;border-radius:50%;padding:10px;background:conic-gradient(from 210deg,#fbf5e6,#9a8a62 18%,#e9ecf2 32%,#6a5a36 50%,#d7dbe3 68%,#8a6a2a 84%,#fbf5e6);box-shadow:0 40px 120px -30px rgba(212,165,55,.75),inset 0 0 0 1px rgba(255,255,255,.3)}
+.ring{position:absolute;inset:0;border-radius:50%;padding:10px;background:conic-gradient(from 210deg,#fbf5e6,#9a8a62 18%,#f3e4bd 32%,#6a5a36 50%,#e2c98d 68%,#8a6a2a 84%,#fbf5e6);box-shadow:0 40px 120px -30px rgba(212,165,55,.75),inset 0 0 0 1px rgba(255,255,255,.3)}
 .ring-in{width:100%;height:100%;border-radius:50%;overflow:hidden;position:relative;background:#0e0e14;display:grid;place-items:end center;padding:0 15% 13%}
 .ring-in img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
 .ring-in::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 70%,transparent 30%,rgba(8,6,3,.8) 100%);box-shadow:inset 0 0 60px 10px rgba(8,6,3,.9)}
@@ -190,7 +190,7 @@ main{counter-reset:sec}
 .c-star h3{font-size:clamp(2rem,3.6vw,3.2rem)}
 .c-star p,.svc-grid .svc:nth-child(4n+1) .svc-t{color:#fff}
 .c-star .tbd,.svc-grid .svc:nth-child(4n+1) .tbd{color:#fff;background:rgba(10,8,4,.28);border-color:rgba(244,241,255,.5)}
-.c-star .shot{margin-top:.4rem;flex:1;min-height:220px;border-radius:var(--r-s);display:grid;place-items:center;text-align:center;padding:1.2rem;background:radial-gradient(circle at 50% 45%,#24202e,#0b0b10 72%);box-shadow:inset 0 0 0 1px rgba(244,241,255,.18);position:relative;overflow:hidden}
+.c-star .shot{margin-top:.4rem;flex:1;min-height:220px;border-radius:var(--r-s);display:grid;place-items:center;text-align:center;padding:1.2rem;background:radial-gradient(circle at 50% 45%,#241c0e,#0b0b10 72%);box-shadow:inset 0 0 0 1px rgba(244,241,255,.18);position:relative;overflow:hidden}
 .c-star .shot i{position:absolute;border-radius:50%;background:var(--sphere)}
 .c-star .shot i:nth-child(1){width:84px;height:84px;right:9%;top:12%}
 .c-star .shot i:nth-child(2){width:34px;height:34px;left:12%;bottom:16%}
@@ -586,3 +586,9 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
   html{scroll-behavior:auto}
   *,*::before,*::after{transition-duration:.01ms!important;animation:none!important}
 }
+
+/* fotos dentro de los marcos (catálogo y galería) */
+.shot>img,.p .img>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:0}
+.shot i,.p .img::before{z-index:2}
+.p .img::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(10,8,4,0) 45%,rgba(10,8,4,.55));z-index:1;pointer-events:none}
+.p .img{position:relative;overflow:hidden}
