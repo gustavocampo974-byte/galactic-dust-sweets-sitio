@@ -633,3 +633,4 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
   .hero .trust li p{display:none}
   .hero .trust li{padding-block:.7rem}
 }
+@media (max-width:760px){.mq .pm-track,.mq .pm-track span{gap:1.4rem}.mq .pm-track{font-size:.92rem}.mq{padding:.85rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}.mq.pm-mq-still{-webkit-mask-image:none;mask-image:none}.mq.pm-mq-still .pm-track{column-gap:1.1rem;font-size:.95rem}.mq.pm-mq-still .pm-track span:last-child::after{display:none}}

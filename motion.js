@@ -31,6 +31,12 @@
   var fitT; addEventListener("resize", function () { clearTimeout(fitT); fitT = setTimeout(fitWords, 150); });
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var off = html.getAttribute("data-motion") === "ninguna" || /[?&]pm=static\b/.test(location.search);  // ?pm=static: capturas
+  // Marquesinas quietas (reducir movimiento, capturas o sin animación): sin duplicados y en varias líneas, para que no se corten.
+  if (reduce || off) d.querySelectorAll(".pm-marquee > .pm-track").forEach(function (t) {
+    var seen = {};
+    Array.prototype.slice.call(t.children).forEach(function (c) { var k = c.textContent.trim(); if (seen[k]) t.removeChild(c); seen[k] = 1; });
+    t.parentNode.classList.add("pm-mq-still");
+  });
   if (!("IntersectionObserver" in window) || reduce || off) return;
   html.classList.add("pm-js");
 
