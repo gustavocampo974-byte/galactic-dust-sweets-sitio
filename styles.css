@@ -634,3 +634,25 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
   .hero .trust li{padding-block:.7rem}
 }
 @media (max-width:760px){.mq .pm-track,.mq .pm-track span{gap:1.4rem}.mq .pm-track{font-size:.92rem}.mq{padding:.85rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}.mq.pm-mq-still{-webkit-mask-image:none;mask-image:none}.mq.pm-mq-still .pm-track{column-gap:1.1rem;font-size:.95rem}.mq.pm-mq-still .pm-track span:last-child::after{display:none}}
+
+/* Catálogo limpio: foto clara arriba, fondo liso detrás del texto, más aire entre tarjetas */
+.cat .bento{gap:clamp(16px,2vw,24px)}
+.cat .card{padding:clamp(1.6rem,2.8vw,2.4rem);gap:1rem}
+.cat .c-dark::before,.cat .c-light::before{display:none}
+.cat .c-dark{background:#14100A;border:1px solid var(--line)}
+.cat .c-dark p{color:#E6DCC4}
+.cat .c-light{background:#FBF3DE}
+.cat .pic{margin:calc(-1 * clamp(1.6rem,2.8vw,2.4rem)) calc(-1 * clamp(1.6rem,2.8vw,2.4rem)) .4rem;aspect-ratio:16/10;overflow:hidden}
+.cat .pic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.cat .card:hover .pic img{transform:scale(1.03)}
+.cat .c-light{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(1.4rem,2.6vw,2.4rem);align-content:start}
+.cat .c-light .pic{grid-row:1 / span 5;margin:calc(-1 * clamp(1.6rem,2.8vw,2.4rem)) 0 calc(-1 * clamp(1.6rem,2.8vw,2.4rem)) calc(-1 * clamp(1.6rem,2.8vw,2.4rem));aspect-ratio:auto;min-height:100%}
+@media (max-width:760px){
+  .cat .c-light{display:flex}
+  .cat .c-light .pic{margin:calc(-1 * clamp(1.6rem,2.8vw,2.4rem)) calc(-1 * clamp(1.6rem,2.8vw,2.4rem)) .4rem;aspect-ratio:16/10;min-height:0}
+  .cat .bento{gap:18px}
+}
+/* Más aire entre bloques grandes para que el ojo respire */
+.blk:not(.hero){margin-top:clamp(20px,3.2vw,40px)}
+/* Campo de estrellas de toda la página (detrás del contenido) */
+.cosmos{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}

@@ -353,6 +353,45 @@
     start();
   });
 })();
+
+/* Viaje espacial en toda la página: campo de estrellas fijo con 3 profundidades que se desplazan al hacer scroll
+   (paralaje), titilan suave y de vez en cuando cruza una estrella fugaz. Detrás de todo, sin tapar el contenido.
+   Con «reducir movimiento» o ?pm=static se dibuja una vez, quieto. */
+(function(){
+  var cv=document.createElement('canvas');if(!cv.getContext)return;
+  cv.className='cosmos';cv.setAttribute('aria-hidden','true');document.body.insertBefore(cv,document.body.firstChild);
+  var still=/[?&]pm=static\b/.test(location.search)||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var ctx=cv.getContext('2d'),W,H,dpr=Math.min(2,window.devicePixelRatio||1),stars=[],shoot=null,nextShoot=4000,last=0;
+  var layers=[{k:.04,n:1/5200,r:[.3,.8],a:.55},{k:.10,n:1/14000,r:[.6,1.2],a:.75},{k:.2,n:1/42000,r:[1,1.7],a:.95}];
+  function size(){
+    W=innerWidth;H=innerHeight;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+    stars=[];layers.forEach(function(L,li){var n=Math.round(W*H*L.n*(W<700?.8:1));
+      for(var i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H*1.0,r:L.r[0]+Math.random()*(L.r[1]-L.r[0]),l:li,t:Math.random()*6.28,s:.4+Math.random()*1.2,g:Math.random()<.18});});
+  }
+  function draw(now){
+    var y=window.scrollY||0;ctx.clearRect(0,0,W,H);
+    for(var i=0;i<stars.length;i++){var s=stars[i],L=layers[s.l];
+      var py=((s.y-y*L.k)%H+H)%H,tw=still?1:.65+.35*Math.sin(s.t+now/1000*s.s);
+      ctx.globalAlpha=L.a*tw;ctx.fillStyle=s.g?'#F2CF6B':'#FFF8E7';
+      ctx.beginPath();ctx.arc(s.x,py,s.r,0,6.283);ctx.fill();}
+    if(shoot){var p=(now-shoot.t0)/shoot.d;
+      if(p>=1)shoot=null;else{var hx=shoot.x+shoot.vx*p,hy=shoot.y+shoot.vy*p,len=120;
+        var g=ctx.createLinearGradient(hx,hy,hx-shoot.vx/Math.hypot(shoot.vx,shoot.vy)*len,hy-shoot.vy/Math.hypot(shoot.vx,shoot.vy)*len);
+        g.addColorStop(0,'rgba(242,207,107,.9)');g.addColorStop(1,'rgba(242,207,107,0)');
+        ctx.globalAlpha=Math.sin(p*3.1416);ctx.strokeStyle=g;ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(hx,hy);
+        ctx.lineTo(hx-shoot.vx/Math.hypot(shoot.vx,shoot.vy)*len,hy-shoot.vy/Math.hypot(shoot.vx,shoot.vy)*len);ctx.stroke();}}
+    ctx.globalAlpha=1;
+  }
+  function loop(now){
+    if(!document.hidden){
+      if(!shoot&&now-last>nextShoot){last=now;nextShoot=6000+Math.random()*7000;
+        shoot={x:W*(.3+Math.random()*.7),y:H*Math.random()*.4,vx:-(W*.45),vy:H*.28,t0:now,d:1400};}
+      draw(now);}
+    requestAnimationFrame(loop);
+  }
+  size();addEventListener('resize',function(){size();if(still)draw(0);});
+  if(still){draw(0);addEventListener('scroll',function(){draw(0);},{passive:true});}else requestAnimationFrame(loop);
+})();
 </script>
 <script src="../motion.js" defer></script>
 </body>
