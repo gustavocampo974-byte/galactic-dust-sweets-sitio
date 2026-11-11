@@ -656,3 +656,11 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
 .blk:not(.hero){margin-top:clamp(20px,3.2vw,40px)}
 /* Campo de estrellas de toda la página (detrás del contenido) */
 .cosmos{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
+/* Tira en móvil: quieta, con las 7 palabras completas y centradas (en pantallas angostas el texto rotando se cortaba) */
+@media (max-width:760px){
+  .mq{-webkit-mask-image:none;mask-image:none;white-space:normal;padding:1rem .6rem}
+  .mq .pm-track{display:flex;flex-wrap:wrap;justify-content:center;column-gap:.65rem;row-gap:.35rem;animation:none!important;transform:none!important;font-size:.84rem;letter-spacing:0}
+  .mq .pm-track span{gap:.65rem}
+  .mq .pm-track span:nth-child(n+5){display:none}
+  .mq .pm-track span:nth-child(4)::after{display:none}
+}
