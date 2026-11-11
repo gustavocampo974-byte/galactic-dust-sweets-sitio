@@ -246,6 +246,7 @@
 (function(){
   var still=/[?&]pm=static\b/.test(location.search)||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
   var hosts=document.querySelectorAll('.hero,.ph');
+  document.querySelectorAll('.hero-video').forEach(function(v){if(still){v.removeAttribute('autoplay');v.pause();}else{var p=v.play();if(p&&p.catch)p.catch(function(){});}});
   if(!hosts.length||!document.createElement('canvas').getContext)return;
   hosts.forEach(function(host){
     var cv=document.createElement('canvas');cv.className='spacefx';cv.setAttribute('aria-hidden','true');host.insertBefore(cv,host.firstChild);

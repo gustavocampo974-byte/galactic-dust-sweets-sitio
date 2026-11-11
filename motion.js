@@ -4,6 +4,31 @@
    data-shrink (cabecera), .pm-progress (barra de lectura), .pm-marquee > .pm-track (se duplica sola). */
 (function () {
   var d = document, html = d.documentElement;
+
+  // Títulos que caben: si la palabra más larga de un título no entra en su ancho (pasa en celulares con tipografías
+  // anchas), se reduce el tamaño de ese título lo justo para que la palabra quepa entera en vez de partirse.
+  // No es movimiento: corre siempre (también con «reducir movimiento»).
+  function fitWords() {
+    d.querySelectorAll("h1,h2,h3,[data-fit]").forEach(function (el) {
+      el.style.fontSize = "";
+      for (var round = 0; round < 3; round++) { // se mide con la tipografía real ya dibujada, en hasta 3 pasadas
+        var cs = getComputedStyle(el), avail = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+        if (avail < 40) return;
+        var probe = d.createElement("span"), widest = 0;
+        probe.style.cssText = "position:absolute;visibility:hidden;white-space:nowrap;left:0;top:0";
+        el.appendChild(probe);
+        (el.textContent || "").split(/\s+/).forEach(function (w) { if (w) { probe.textContent = w; widest = Math.max(widest, probe.getBoundingClientRect().width); } });
+        el.removeChild(probe);
+        if (widest <= avail + 0.5) return;
+        var fs = parseFloat(cs.fontSize);
+        el.style.fontSize = Math.max(fs * 0.55, Math.floor(fs * (avail / widest) * 0.98 * 10) / 10) + "px";
+      }
+    });
+  }
+  if (d.fonts && d.fonts.ready) d.fonts.ready.then(fitWords);
+  addEventListener("load", fitWords);
+  setTimeout(fitWords, 60);
+  var fitT; addEventListener("resize", function () { clearTimeout(fitT); fitT = setTimeout(fitWords, 150); });
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var off = html.getAttribute("data-motion") === "ninguna" || /[?&]pm=static\b/.test(location.search);  // ?pm=static: capturas
   if (!("IntersectionObserver" in window) || reduce || off) return;

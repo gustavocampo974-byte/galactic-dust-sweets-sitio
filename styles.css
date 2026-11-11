@@ -614,3 +614,14 @@ details>p,.ans{color:var(--soft);line-height:1.7;padding:0 3.5rem 1.5rem 0;max-w
 /* espacio en movimiento (canvas que agrega script.js en .hero y .ph) */
 .hero,.ph{position:relative}
 .spacefx{position:absolute;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none;border-radius:inherit}
+
+/* móvil: palabras largas que no cabían (Unbounded es muy ancha) */
+@media (max-width:520px){
+  .c-star h3{font-size:clamp(1.5rem,7vw,2rem);max-width:none}
+  .ig .handle{font-size:clamp(.95rem,4.6vw,1.3rem)}
+  details summary{overflow-wrap:anywhere}
+}
+
+/* Video de espacio en la portada (debajo de las estrellas/cupcakes y del degradado dorado) */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;border-radius:inherit;pointer-events:none}
+.hero:has(.hero-video)::before{display:none}
